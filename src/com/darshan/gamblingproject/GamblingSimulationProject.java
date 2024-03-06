@@ -4,46 +4,54 @@ public class GamblingSimulationProject {
 	
 	private static final int STACK_PER_DAY = 100;
 	private static final int BET_PER_GAME = 1;
-	
 	private static final int WIN = 1;
 	private static final int LOOSE = 0;
-	private static int winStack = 0;
-	private static int looseStack = 0;
+	
+	private static final int winAmount[]= new int[20];
+	private static final int looseAmount[]= new int[20];
 	
 	public static void gameStatus()
 	{
 		System.out.println("Satck Available :" +STACK_PER_DAY);
 		System.out.println("Bet Per Game :" +BET_PER_GAME);
-		System.out.println("Win Stack :" +winStack);
-		System.out.println("Loose Stack :" +looseStack);
-		
-		System.out.println("------------------------------------");
 	}
 	
 	public static void gamePlay()
 	{
-		while(true)
+		gameStatus();
+		for(int i = 0; i < 20; i++ )
 		{
-			gameStatus();
-			Random random = new Random();
-			int playStatus =random.nextInt(9)%2;
-			System.out.println("Play Status :" + playStatus);
-			if(playStatus == LOOSE)
+			System.out.println("Day :"+(i+1));
+		    int winStack = 0;
+			int looseStack = 0;
+			while(true)
 			{
-				looseStack = looseStack + 1;
+				Random random = new Random();
+				int playStatus =random.nextInt(9)%2;
+				
+				if(playStatus == LOOSE)
+				{
+					looseStack = looseStack + 1;
+				}
+				else
+				{
+					winStack = winStack + 1;
+				}
+				if(looseStack == STACK_PER_DAY / 2)
+				{
+					break;
+				}
+				if(winStack == STACK_PER_DAY / 2)
+				{
+					break;
+				}
 			}
-			else
-			{
-				winStack = winStack + 1;
-			}
-			if(looseStack == STACK_PER_DAY / 2)
-			{
-				break;
-			}
-			if(winStack == STACK_PER_DAY / 2)
-			{
-				break;
-			}
+			winAmount[i] = winStack;
+			looseAmount[i] = looseStack;
+			
+			System.out.println("Win Stack :" +winStack);
+			System.out.println("Loose Stack :" +looseStack);
+			System.out.println("------------------------------------");
 		}
 	}
 
