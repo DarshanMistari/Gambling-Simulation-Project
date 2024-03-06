@@ -16,29 +16,43 @@ public class GamblingSimulationProject {
 		System.out.println("Bet Per Game :" +BET_PER_GAME);
 		System.out.println("Win Stack :" +winStack);
 		System.out.println("Loose Stack :" +looseStack);
+		
+		System.out.println("------------------------------------");
 	}
 	
 	public static void gamePlay()
 	{
-		Random random = new Random();
-		int playStatus =random.nextInt(9)%2;
-		System.out.println("Play Status :" + playStatus);
-		if(playStatus == LOOSE)
+		while(true)
 		{
-			looseStack = looseStack + 1;
-		}
-		else
-		{
-			winStack = winStack + 1;
+			gameStatus();
+			Random random = new Random();
+			int playStatus =random.nextInt(9)%2;
+			System.out.println("Play Status :" + playStatus);
+			if(playStatus == LOOSE)
+			{
+				looseStack = looseStack + 1;
+			}
+			else
+			{
+				winStack = winStack + 1;
+			}
+			if(looseStack == STACK_PER_DAY / 2)
+			{
+				break;
+			}
+			if(winStack == STACK_PER_DAY / 2)
+			{
+				break;
+			}
 		}
 	}
 
 	public static void main(String[] args) {
 		
 		System.out.println("Welcome to Gambling Simulation Project Developed by Darshan Mistari");
-	    gameStatus();
+		
 	    gamePlay();
-	    gameStatus();
+	    
 	}
 
 }
