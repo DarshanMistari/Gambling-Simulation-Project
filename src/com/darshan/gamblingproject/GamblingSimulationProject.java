@@ -1,5 +1,6 @@
 package com.darshan.gamblingproject;
 import java.util.Random;
+import java.util.Scanner;
 public class GamblingSimulationProject {
 	
 	private static final int STACK_PER_DAY = 100;
@@ -19,7 +20,7 @@ public class GamblingSimulationProject {
 	static int maxLost = 0;
 	static int indexWin = 0;
 	static int indexLost = 0;
-	
+	static int userChoise ;
 	
 	public static void gameStatus()
 	{
@@ -30,11 +31,12 @@ public class GamblingSimulationProject {
 	public static void gamePlay()
 	{
 		gameStatus();
-
+ 
+		do {
 		for(int i = 0; i < 20; i++ )
 		{
 			System.out.println("Day :"+(i+1));
-		    int winStack = 0;
+		    int winStack = 0; 
 			int looseStack = 0;
 			while(true)
 			{
@@ -93,6 +95,14 @@ public class GamblingSimulationProject {
 		System.out.println(indexWin + " is the Luckiest Day Win Rs :" + maxWin);
 		System.out.println("Total Monthly Loose Day :"+total_Loose_Day);
 		System.out.println(indexLost +" is the UnLuckiest Day Loose Rs :"+ maxLost);
+		
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("You are Continue Playing Game Enter 1(yes) OR 0 (No) :");
+		userChoise = scanner.nextInt();
+		
+		}
+		while(userChoise == 1);
+			
 	}
 
 	public static void main(String[] args) {
